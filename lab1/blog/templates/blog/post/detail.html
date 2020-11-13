@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %} 
+ 
+{% block title %}{{ post.title }}{% endblock %} 
+ 
+{% block content %} 
+  <h1>{{ post.title }}</h1> 
+  <span  class="text-muted"> 
+    Napisano {{ post.publish }}, autor: {{ post.author }} 
+  </span> 
+  {% autoescape off %}
+   {{ post.body|linebreaks }} 
+  {% endautoescape %}
+  <div>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          {% if post.authorDesc.photo %}
+          <div class="col-3 col-sm-2">
+            <img src="{{ post.authorDesc.photo }}" class="rounded-circle" style="width: 100%;"/>
+          </div>
+          {% endif %}
+          <div class="col">
+            <h5 class="card-title">O autorze</h5>
+            <p class="card-text">{{ post.authorDesc.content }}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+     
+  </div>
+{% endblock %}
